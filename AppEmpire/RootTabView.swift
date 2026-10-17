@@ -1,11 +1,13 @@
 import SwiftUI
 
 struct RootTabView: View {
+    @StateObject private var portfolioModel = PortfolioViewModel()
+
     var body: some View {
         TabView {
-            PlaceholderTab(title: "Home", symbol: "house.fill")
+            HomeView(model: portfolioModel)
                 .tabItem { Label("Home", systemImage: "house.fill") }
-            PlaceholderTab(title: "Products", symbol: "square.stack.3d.up.fill")
+            ProductsView(model: portfolioModel)
                 .tabItem { Label("Products", systemImage: "square.stack.3d.up.fill") }
             PlaceholderTab(title: "Market", symbol: "chart.line.uptrend.xyaxis")
                 .tabItem { Label("Market", systemImage: "chart.line.uptrend.xyaxis") }

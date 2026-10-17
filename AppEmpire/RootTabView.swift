@@ -5,18 +5,26 @@ struct RootTabView: View {
     @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
-        TabView {
-            HomeView(model: portfolioModel)
-                .tabItem { Label("Home", systemImage: "house.fill") }
-            ProductsView(model: portfolioModel)
-                .tabItem { Label("Products", systemImage: "square.stack.3d.up.fill") }
-            PlaceholderTab(title: "Market", symbol: "chart.line.uptrend.xyaxis")
-                .tabItem { Label("Market", systemImage: "chart.line.uptrend.xyaxis") }
-            PlaceholderTab(title: "Season", symbol: "trophy.fill")
-                .tabItem { Label("Season", systemImage: "trophy.fill") }
-            PlaceholderTab(title: "Profile", symbol: "person.crop.circle.fill")
-                .tabItem { Label("Profile", systemImage: "person.crop.circle.fill") }
+        GeometryReader { proxy in
+            ZStack {
+                AppColors.background.ignoresSafeArea()
+                TabView {
+                    HomeView(model: portfolioModel)
+                        .tabItem { Label("Home", systemImage: "house.fill") }
+                    ProductsView(model: portfolioModel)
+                        .tabItem { Label("Products", systemImage: "square.stack.3d.up.fill") }
+                    PlaceholderTab(title: "Market", symbol: "chart.line.uptrend.xyaxis")
+                        .tabItem { Label("Market", systemImage: "chart.line.uptrend.xyaxis") }
+                    PlaceholderTab(title: "Season", symbol: "trophy.fill")
+                        .tabItem { Label("Season", systemImage: "trophy.fill") }
+                    PlaceholderTab(title: "Profile", symbol: "person.crop.circle.fill")
+                        .tabItem { Label("Profile", systemImage: "person.crop.circle.fill") }
+                }
+                .frame(width: proxy.size.width, height: proxy.size.height)
+            }
+            .frame(width: proxy.size.width, height: proxy.size.height)
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .tint(AppColors.lime)
         .toolbarBackground(.ultraThinMaterial, for: .tabBar)
         .toolbarBackgroundVisibility(.visible, for: .tabBar)

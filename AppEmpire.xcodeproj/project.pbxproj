@@ -12,10 +12,13 @@
 		40CA0B7B396F86821EBE2715 /* economy.json in Resources */ = {isa = PBXBuildFile; fileRef = 1D6F07F4337765D7C4803B10 /* economy.json */; };
 		42BCC771DB02376FD885074E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B615EE6FFE11C5D79BBE23 /* Foundation.framework */; };
 		432BB25FFCEAF4FE77918320 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B615EE6FFE11C5D79BBE23 /* Foundation.framework */; };
+		4C5C26C632E040D156FABC9E /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99DA872BB8F35D48587CB2F /* Models.swift */; };
 		55CA906D3E3706D30AA85A96 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6B468F9A186638C8318CA1C /* Configuration.swift */; };
 		56706FC4031DF2DE01A23A0C /* RootTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C055B8BAB8CBE02B94A5D0DA /* RootTabView.swift */; };
+		8417E3A35B4E7C302D22196F /* EconomyEngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280295A1DEDAD57E57EC7E62 /* EconomyEngineTests.swift */; };
 		8FA5D9E290B83B79348FA189 /* AppEmpireApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F73D3FCFF7E490D964E4CD9 /* AppEmpireApp.swift */; };
 		A272D0A9F3DAA0E331155907 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B615EE6FFE11C5D79BBE23 /* Foundation.framework */; };
+		A63DB1FBEC48BE1A46E5A907 /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D64576F8E478FF959C4131 /* Engine.swift */; };
 		F8BE6E53C4F7F4A097820B12 /* products.json in Resources */ = {isa = PBXBuildFile; fileRef = 53BB14DE8B76A85423A004D2 /* products.json */; };
 		FA5E3057D5C70C4CB083DEB6 /* AppEmpireTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24D7E502125BF1E6E0903AF2 /* AppEmpireTests.swift */; };
 /* End PBXBuildFile section */
@@ -41,13 +44,16 @@
 		0B5CB8E971ECCF97FF4B6258 /* AppEmpireUITests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppEmpireUITests.swift; sourceTree = "<group>"; };
 		1D6F07F4337765D7C4803B10 /* economy.json */ = {isa = PBXFileReference; includeInIndex = 1; path = economy.json; sourceTree = "<group>"; };
 		24D7E502125BF1E6E0903AF2 /* AppEmpireTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppEmpireTests.swift; sourceTree = "<group>"; };
+		280295A1DEDAD57E57EC7E62 /* EconomyEngineTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EconomyEngineTests.swift; sourceTree = "<group>"; };
 		4F73D3FCFF7E490D964E4CD9 /* AppEmpireApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppEmpireApp.swift; sourceTree = "<group>"; };
 		53BB14DE8B76A85423A004D2 /* products.json */ = {isa = PBXFileReference; includeInIndex = 1; path = products.json; sourceTree = "<group>"; };
+		53D64576F8E478FF959C4131 /* Engine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
 		862129E6B0BFEA81A68B3947 /* AppEmpireUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppEmpireUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B7B9DDC74F22956117D6A1C /* ConfigurationTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConfigurationTests.swift; sourceTree = "<group>"; };
 		B6B468F9A186638C8318CA1C /* Configuration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		BF2BDB464A6CD488E9ABC090 /* AppEmpire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppEmpire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C055B8BAB8CBE02B94A5D0DA /* RootTabView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
+		C99DA872BB8F35D48587CB2F /* Models.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		C9B615EE6FFE11C5D79BBE23 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		D1D2DB9DEA5221FB09AAD3D8 /* AppEmpireTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppEmpireTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -93,6 +99,8 @@
 			isa = PBXGroup;
 			children = (
 				B6B468F9A186638C8318CA1C /* Configuration.swift */,
+				C99DA872BB8F35D48587CB2F /* Models.swift */,
+				53D64576F8E478FF959C4131 /* Engine.swift */,
 			);
 			name = Economy;
 			path = Economy;
@@ -151,6 +159,7 @@
 			children = (
 				24D7E502125BF1E6E0903AF2 /* AppEmpireTests.swift */,
 				9B7B9DDC74F22956117D6A1C /* ConfigurationTests.swift */,
+				280295A1DEDAD57E57EC7E62 /* EconomyEngineTests.swift */,
 			);
 			name = AppEmpireTests;
 			path = AppEmpireTests;
@@ -285,6 +294,7 @@
 			files = (
 				FA5E3057D5C70C4CB083DEB6 /* AppEmpireTests.swift in Sources */,
 				0F309811BB82BA2150A906E6 /* ConfigurationTests.swift in Sources */,
+				8417E3A35B4E7C302D22196F /* EconomyEngineTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +305,8 @@
 				8FA5D9E290B83B79348FA189 /* AppEmpireApp.swift in Sources */,
 				56706FC4031DF2DE01A23A0C /* RootTabView.swift in Sources */,
 				55CA906D3E3706D30AA85A96 /* Configuration.swift in Sources */,
+				4C5C26C632E040D156FABC9E /* Models.swift in Sources */,
+				A63DB1FBEC48BE1A46E5A907 /* Engine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

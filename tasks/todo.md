@@ -22,7 +22,7 @@
 
 ### Task 3: Implement the deterministic economy engine
 
-- [ ] Build pure state/action types and the first red-green tests for hourly rates, aggregate portfolio income, active tap rewards, elapsed income, rounding, caps, invalid actions, and deterministic replay.
+- [x] Build pure state/action types and the first red-green tests for hourly rates, aggregate portfolio income, active tap rewards, elapsed income, rounding, caps, invalid actions, and deterministic replay.
 - Acceptance: Two `$8/hour` apps expose `$16/hour`; configured active tap target produces the documented initial `$0.16` parity value; identical inputs produce identical state; balances never go negative.
 - Verify: Focused economy test suite and property-style boundary tests.
 - Dependencies: Task 2.

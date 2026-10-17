@@ -13,11 +13,11 @@ struct RootTabView: View {
                         .tabItem { Label("Home", systemImage: "house.fill") }
                     ProductsView(model: portfolioModel)
                         .tabItem { Label("Products", systemImage: "square.stack.3d.up.fill") }
-                    PlaceholderTab(title: "Market", symbol: "chart.line.uptrend.xyaxis")
+            MarketView(model: portfolioModel)
                         .tabItem { Label("Market", systemImage: "chart.line.uptrend.xyaxis") }
-                    PlaceholderTab(title: "Season", symbol: "trophy.fill")
+            SeasonView(model: portfolioModel)
                         .tabItem { Label("Season", systemImage: "trophy.fill") }
-                    PlaceholderTab(title: "Profile", symbol: "person.crop.circle.fill")
+            ProfileView(model: portfolioModel)
                         .tabItem { Label("Profile", systemImage: "person.crop.circle.fill") }
                 }
                 .frame(width: proxy.size.width, height: proxy.size.height)

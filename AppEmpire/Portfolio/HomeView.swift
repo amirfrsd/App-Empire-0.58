@@ -2,6 +2,8 @@ import SwiftUI
 
 struct HomeView: View {
     @ObservedObject var model: PortfolioViewModel
+    @State private var tapPopup: String?
+    @State private var tapPopupID = UUID()
 
     var body: some View {
         ZStack {
@@ -85,12 +87,32 @@ struct HomeView: View {
                         .font(.title2.bold())
                         .foregroundStyle(AppColors.lime)
                 }
-                Button("Tap to Earn") {
+                ZStack(alignment: .bottom) {
+                    Button("Tap to Earn") {
                     model.tapToEarn()
+                        tapPopupID = UUID()
+                        tapPopup = "+\(MoneyFormatter.cents(model.lastTapRewardCents))"
+                        withAnimation(.easeOut(duration: 0.7)) { }
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
+                            withAnimation(.easeIn(duration: 0.2)) { tapPopup = nil }
+                        }
+                    }
+                    .buttonStyle(PrimaryActionButtonStyle())
+                    .disabled(!model.hasLaunchedApp)
+                    .accessibilityHint("Adds active earnings from all launched apps")
+
+                    if let tapPopup {
+                        Text(tapPopup)
+                            .id(tapPopupID)
+                            .font(.headline.weight(.bold))
+                            .foregroundStyle(AppColors.ink)
+                            .padding(.horizontal, 12)
+                            .padding(.vertical, 7)
+                            .background(AppColors.lime, in: Capsule())
+                            .offset(y: -58)
+                            .transition(.asymmetric(insertion: .scale.combined(with: .opacity), removal: .move(edge: .top).combined(with: .opacity)))
+                    }
                 }
-                .buttonStyle(PrimaryActionButtonStyle())
-                .disabled(!model.hasLaunchedApp)
-                .accessibilityHint("Adds active earnings from all launched apps")
             }
         }
     }

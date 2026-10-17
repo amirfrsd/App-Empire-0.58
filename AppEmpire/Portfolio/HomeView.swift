@@ -4,6 +4,8 @@ struct HomeView: View {
     @ObservedObject var model: PortfolioViewModel
     @State private var tapPopup: String?
     @State private var tapPopupID = UUID()
+    @State private var tapPopupPosition = CGPoint(x: 160, y: 30)
+    @State private var tapPopupRotation: Double = 0
 
     var body: some View {
         ZStack {
@@ -87,11 +89,12 @@ struct HomeView: View {
                         .font(.title2.bold())
                         .foregroundStyle(AppColors.lime)
                 }
-                ZStack(alignment: .bottom) {
+                ZStack(alignment: .topLeading) {
                     Button("Tap to Earn") {
                     model.tapToEarn()
                         tapPopupID = UUID()
                         tapPopup = "+\(MoneyFormatter.cents(model.lastTapRewardCents))"
+                        tapPopupRotation = Double.random(in: -8...8)
                         withAnimation(.easeOut(duration: 0.7)) { }
                         DispatchQueue.main.asyncAfter(deadline: .now() + 0.9) {
                             withAnimation(.easeIn(duration: 0.2)) { tapPopup = nil }
@@ -100,6 +103,15 @@ struct HomeView: View {
                     .buttonStyle(PrimaryActionButtonStyle())
                     .disabled(!model.hasLaunchedApp)
                     .accessibilityHint("Adds active earnings from all launched apps")
+                    .simultaneousGesture(
+                        DragGesture(minimumDistance: 0)
+                            .onEnded { value in
+                                tapPopupPosition = CGPoint(
+                                    x: min(max(value.location.x, 48), 300),
+                                    y: min(max(value.location.y, 22), 66)
+                                )
+                            }
+                    )
 
                     if let tapPopup {
                         Text(tapPopup)
@@ -109,8 +121,9 @@ struct HomeView: View {
                             .padding(.horizontal, 12)
                             .padding(.vertical, 7)
                             .background(AppColors.lime, in: Capsule())
-                            .offset(y: -58)
-                            .transition(.asymmetric(insertion: .scale.combined(with: .opacity), removal: .move(edge: .top).combined(with: .opacity)))
+                            .rotationEffect(.degrees(tapPopupRotation))
+                            .position(x: tapPopupPosition.x, y: tapPopupPosition.y)
+                            .transition(.asymmetric(insertion: .scale(scale: 0.7).combined(with: .opacity), removal: .scale(scale: 1.15).combined(with: .opacity)))
                     }
                 }
             }

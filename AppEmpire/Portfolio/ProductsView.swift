@@ -65,12 +65,13 @@ private struct ProductCreatorView: View {
     @State private var selectedCategory: String?
 
     private var categories: [String] {
-        Array(Set(model.catalog.products.map(\.categoryLabel))).sorted()
+        guard let selectedType else { return [] }
+        return Array(Set(model.catalog.products.filter { $0.productType == selectedType.rawValue }.map(\.categoryLabel))).sorted()
     }
 
     private var ideas: [ProductSeed] {
         guard let selectedCategory else { return [] }
-        return model.catalog.products.filter { $0.categoryLabel == selectedCategory }.prefix(5).map { $0 }
+        return model.catalog.products.filter { $0.categoryLabel == selectedCategory && $0.productType == selectedType?.rawValue }.prefix(5).map { $0 }
     }
 
     var body: some View {
@@ -109,6 +110,8 @@ private struct ProductCreatorView: View {
                                     VStack(alignment: .leading, spacing: 8) {
                                         Text(product.name).font(.headline).foregroundStyle(AppColors.mainText)
                                         Text(product.description).font(.subheadline).foregroundStyle(AppColors.mainText.opacity(0.72)).fixedSize(horizontal: false, vertical: true)
+                                        Text("\(product.platform.uppercased()) · \(product.businessModel.replacingOccurrences(of: "_", with: " ").capitalized) · For \(product.targetCustomer)")
+                                            .font(.caption).foregroundStyle(AppColors.lime.opacity(0.85))
                                         HStack {
                                             Text("Build \(MoneyFormatter.cents(product.buildCostCents))")
                                                 .font(.caption.weight(.semibold)).foregroundStyle(AppColors.lime)

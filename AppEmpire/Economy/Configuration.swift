@@ -80,9 +80,16 @@ struct ProductSeed: Decodable, Identifiable, Sendable {
     let baseArpuCents: Int
     let baseChurnDaily: Double
     let complexity: Int
+    let productType: String
+    let platform: String
+    let businessModel: String
+    let targetCustomer: String
 
     enum CodingKeys: String, CodingKey {
-        case id, name, category, tier, description, complexity
+        case id, name, category, tier, description, complexity, platform
+        case productType = "product_type"
+        case businessModel = "business_model"
+        case targetCustomer = "target_customer"
         case categoryLabel = "category_label"
         case buildCostCents = "build_cost_cents"
         case aiTokenCost = "ai_token_cost"

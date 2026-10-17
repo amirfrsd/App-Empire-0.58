@@ -10,6 +10,8 @@ final class ConfigurationTests: XCTestCase {
         XCTAssertEqual(Set(catalog.products.map(\.id)).count, 120)
         XCTAssertEqual(catalog.products.first?.id, "product_001")
         XCTAssertEqual(catalog.products.last?.id, "product_120")
+        XCTAssertEqual(Set(catalog.products.map(\.productType)), Set(["mobile", "saas"]))
+        XCTAssertTrue(catalog.products.allSatisfy { !$0.platform.isEmpty && !$0.businessModel.isEmpty && !$0.targetCustomer.isEmpty })
     }
 
     func testReferenceEconomyHasStartingStateAndTapConfiguration() throws {

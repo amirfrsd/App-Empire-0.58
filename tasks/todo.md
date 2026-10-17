@@ -13,7 +13,7 @@
 
 ### Task 2: Import and validate reference configuration
 
-- [ ] Add versioned economy/product JSON and Codable models for the reference configuration.
+- [x] Add versioned economy/product JSON and Codable models for the reference configuration.
 - Acceptance: Economy config parses; exactly 120 unique products load; categories/tiers and positive costs validate; UI code does not contain balance constants.
 - Verify: Focused config unit tests plus a catalog count assertion.
 - Dependencies: Task 1.

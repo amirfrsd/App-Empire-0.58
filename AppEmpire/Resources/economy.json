@@ -1,0 +1,73 @@
+{
+  "config_version": "1.0.0",
+  "status": "playable_proposal",
+  "currency": {
+    "cash_minor_unit": "cent",
+    "gems_minor_unit": "whole_gem",
+    "cash_cap": 9223372036854775807,
+    "gems_cap": 2147483647,
+    "rounding": "half_up"
+  },
+  "starting_state": {
+    "cash_cents": 90000,
+    "ai_tokens": 12,
+    "gems": 0,
+    "founder_level": 1,
+    "product_slots": 1
+  },
+  "ai_tokens": {
+    "max": 30,
+    "regeneration_seconds": 1800,
+    "daily_free_grant": 3,
+    "creation_costs": { "first_product": 3, "second_product": 4, "third_product": 6, "later_product_base": 7 },
+    "paid_refill_allowed": false
+  },
+  "offline": { "max_catchup_hours": 8, "minimum_claim_seconds": 60, "claim_cooldown_seconds": 0 },
+  "simulation": {
+    "tick_seconds": 60,
+    "customer_cap_per_product": 1000000000,
+    "base_arpu_cents": 35,
+    "base_churn_daily": 0.035,
+    "quality_multiplier_min": 0.5,
+    "quality_multiplier_max": 2.0,
+    "marketing_multiplier_max": 3.0,
+    "season_score_paid_boost_multiplier": 1.0
+  },
+  "progression": {
+    "founder_xp_per_launch": 100,
+    "founder_xp_per_1000_customers": 10,
+    "level_xp_base": 250,
+    "level_xp_growth": 1.18,
+    "slot_unlock_levels": [1, 3, 6, 10, 15, 21]
+  },
+  "upgrades": {
+    "quality": { "base_cost_cents": 12000, "cost_growth": 1.55, "quality_per_level": 0.08, "max_level": 10 },
+    "retention": { "base_cost_cents": 16000, "cost_growth": 1.6, "churn_reduction_per_level": 0.015, "max_level": 8 },
+    "marketing": { "base_cost_cents": 9000, "cost_growth": 1.5, "demand_per_level": 0.12, "max_level": 10 }
+  },
+  "gems_earnable": { "daily_challenge": 2, "weekly_milestone": 15, "season_free_track_max": 120 },
+  "store": {
+    "gem_packs": [
+      { "product_id": "gems_150", "gems": 150, "price_usd": 1.99 },
+      { "product_id": "gems_450", "gems": 450, "price_usd": 4.99 },
+      { "product_id": "gems_1000", "gems": 1000, "price_usd": 9.99 },
+      { "product_id": "gems_2300", "gems": 2300, "price_usd": 19.99 },
+      { "product_id": "gems_6500", "gems": 6500, "price_usd": 49.99 }
+    ],
+    "offers": [
+      { "product_id": "starter_pack", "type": "non_consumable_bundle", "price_usd": 2.99, "contents": { "gems": 250, "cash_cents": 50000, "cosmetic": "founder_neon" } },
+      { "product_id": "income_convenience", "type": "non_consumable_convenience", "price_usd": 2.99, "ranked_score_multiplier": 1.0 },
+      { "product_id": "season_pass", "type": "season_entitlement", "price_usd": 2.99, "duration_days": 14 },
+      { "product_id": "vip_monthly", "type": "auto_renewable_subscription", "price_usd": 4.99, "duration_days": 30, "ranked_score_multiplier": 1.0 },
+      { "product_id": "gem_piggy_bank", "type": "consumable_bundle", "price_usd": 1.99, "max_gems": 500 }
+    ],
+    "competitive_rule": "purchased_currency_and_paid_convenience_effects_are_excluded_from_ranked_score"
+  },
+  "seasons": {
+    "duration_days": 14,
+    "score_weights": { "verified_net_cash_growth": 0.45, "retention": 0.3, "product_quality": 0.25 },
+    "submission_interval_seconds": 900,
+    "leaderboard_page_size": 50,
+    "reward_claim_grace_days": 30
+  }
+}

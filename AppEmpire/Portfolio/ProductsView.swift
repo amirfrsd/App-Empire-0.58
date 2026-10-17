@@ -97,7 +97,7 @@ private struct ProductCreatorView: View {
                         if selectedType != nil {
                             Text("2. Choose a category").font(.headline).foregroundStyle(AppColors.mainText).padding(.top, 8)
                             ForEach(categories, id: \.self) { category in
-                                selectionRow(title: category, symbol: "square.grid.2x2", isSelected: selectedCategory == category) {
+                                selectionRow(title: category, symbol: CategoryPresentation.symbol(for: category), isSelected: selectedCategory == category) {
                                     selectedCategory = category
                                 }
                             }

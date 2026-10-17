@@ -26,7 +26,8 @@ struct MarketView: View {
                         GlassSurface {
                             VStack(alignment: .leading, spacing: 12) {
                                 HStack {
-                                    Text(category).font(.headline).foregroundStyle(AppColors.mainText)
+                                    Label(category, systemImage: CategoryPresentation.symbol(for: category))
+                                        .font(.headline).foregroundStyle(AppColors.mainText)
                                     Spacer()
                                     Text("\(products.count) products").font(.caption).foregroundStyle(AppColors.mainText.opacity(0.65))
                                 }

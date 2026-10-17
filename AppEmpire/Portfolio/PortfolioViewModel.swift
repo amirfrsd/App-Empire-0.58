@@ -95,6 +95,13 @@ final class PortfolioViewModel: ObservableObject {
         persist()
     }
 
+    func collectOfflineDouble() {
+        guard let summary = offlineSummary, summary.passiveIncomeCents > 0 else { return }
+        state.cashCents += summary.passiveIncomeCents
+        offlineSummary = nil
+        persist()
+    }
+
     private func applyOfflineCatchup() {
         let elapsed = max(0, Int(Date().timeIntervalSince(lastSavedAt)))
         guard elapsed >= engine.config.offline.minimumClaimSeconds else { return }

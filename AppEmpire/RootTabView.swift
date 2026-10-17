@@ -40,14 +40,16 @@ struct RootTabView: View {
                 portfolioModel.simulateForegroundTime()
             }
         }
-        .alert("Welcome back", isPresented: Binding(
+        .sheet(isPresented: Binding(
             get: { portfolioModel.offlineSummary != nil },
             set: { if !$0 { portfolioModel.offlineSummary = nil } }
         )) {
-            Button("Collect") { portfolioModel.offlineSummary = nil }
-        } message: {
             if let summary = portfolioModel.offlineSummary {
-                Text("Your apps earned \(summary.passiveIncomeCents / 100) dollars while you were away.")
+                OfflineEarningsView(
+                    summary: summary,
+                    onCollect: { portfolioModel.offlineSummary = nil },
+                    onCollectDouble: { portfolioModel.collectOfflineDouble() }
+                )
             }
         }
     }

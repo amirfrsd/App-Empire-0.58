@@ -38,7 +38,7 @@
 
 ### Task 4: Add versioned local persistence
 
-- [ ] Persist player state, app state, schema/config versions, last simulation time, action journal, and rolling backup using a transactional local store.
+- [x] Persist player state, app state, schema/config versions, last simulation time, action journal, and rolling backup using a transactional local store.
 - Acceptance: Saves survive relaunch; migration failure does not destroy the previous snapshot; duplicate idempotency keys do not duplicate rewards.
 - Verify: Persistence integration tests including migration and crash-recovery fixtures.
 - Dependencies: Task 3.

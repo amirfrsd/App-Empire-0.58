@@ -60,8 +60,8 @@ struct PlayerState: Codable, Equatable, Sendable {
     static func starter(configVersion: String = "1.0.0") -> PlayerState {
         PlayerState(
             cashCents: 90_000,
-            gems: 0,
-            aiTokens: 12,
+            gems: 5,
+            aiTokens: 10,
             founderLevel: 1,
             founderXP: 0,
             productSlots: 1,

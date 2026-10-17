@@ -10,8 +10,8 @@
   },
   "starting_state": {
     "cash_cents": 90000,
-    "ai_tokens": 12,
-    "gems": 0,
+    "ai_tokens": 10,
+    "gems": 5,
     "founder_level": 1,
     "product_slots": 1
   },

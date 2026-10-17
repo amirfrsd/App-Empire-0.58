@@ -8,7 +8,7 @@ enum ResourceIntegrityError: Error, Equatable {
 
 enum ResourceIntegrity {
     static let expectedHashes: [String: String] = [
-        "economy.json": "4f7849227e70975d831909550fd2752ee4a20dbbe868569c750e06eb9908fd40",
+        "economy.json": "bb47ecab38b6fd6ae0991afe5a165dbaadfc617949527cfce9a64d3ff934250f",
         "products.json": "8ef9d966f488e13d7747fe4bbfb085c8f3788d10d7b625e1ca48f76c6126d400"
     ]
 

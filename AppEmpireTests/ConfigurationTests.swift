@@ -19,7 +19,8 @@ final class ConfigurationTests: XCTestCase {
 
         XCTAssertEqual(economy.configVersion, "1.0.0")
         XCTAssertEqual(economy.startingState.cashCents, 90_000)
-        XCTAssertEqual(economy.startingState.aiTokens, 12)
+        XCTAssertEqual(economy.startingState.aiTokens, 10)
+        XCTAssertEqual(economy.startingState.gems, 5)
         XCTAssertEqual(economy.offline.maxCatchupHours, 8)
     }
 

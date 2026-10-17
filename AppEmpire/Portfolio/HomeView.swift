@@ -9,6 +9,7 @@ struct HomeView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     header
+                    cashCard
                     rateCard
                     tapCard
                     portfolioCard
@@ -18,6 +19,7 @@ struct HomeView: View {
                 .padding(.bottom, 32)
             }
         }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .fullScreenCover(isPresented: $model.showTutorial) {
             TutorialView(model: model)
         }
@@ -51,6 +53,20 @@ struct HomeView: View {
         }
     }
 
+    private var cashCard: some View {
+        GlassSurface {
+            VStack(alignment: .leading, spacing: 6) {
+                Text("Available cash")
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(AppColors.mainText.opacity(0.7))
+                Text(MoneyFormatter.cents(model.state.cashCents))
+                    .font(.system(size: 32, weight: .bold, design: .rounded))
+                    .foregroundStyle(AppColors.lime)
+            }
+            .frame(maxWidth: .infinity, alignment: .leading)
+        }
+    }
+
     private var tapCard: some View {
         GlassSurface {
             VStack(spacing: 16) {
@@ -64,7 +80,7 @@ struct HomeView: View {
                             .foregroundStyle(AppColors.mainText.opacity(0.7))
                     }
                     Spacer()
-                    Text("+$\(model.lastTapRewardCents / 100)")
+                    Text("+\(MoneyFormatter.cents(model.lastTapRewardCents))")
                         .font(.title2.bold())
                         .foregroundStyle(AppColors.lime)
                 }

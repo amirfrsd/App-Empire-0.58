@@ -7,6 +7,7 @@ final class PortfolioViewModel: ObservableObject {
     @Published private(set) var lastTapRewardCents: Int64 = 0
     @Published var showTutorial = false
     @Published var offlineSummary: EconomySummary?
+    @Published private(set) var catalog: ProductCatalog
 
     let engine: EconomyEngine
     private let store: PlayerStore
@@ -16,6 +17,8 @@ final class PortfolioViewModel: ObservableObject {
         try! ResourceIntegrity.verifyBundledResources()
         let economyURL = Bundle.main.url(forResource: "economy", withExtension: "json")!
         let config = try! ConfigurationLoader.loadEconomy(from: economyURL)
+        let catalogURL = Bundle.main.url(forResource: "products", withExtension: "json")!
+        self.catalog = try! ConfigurationLoader.loadCatalog(from: catalogURL)
         self.engine = EconomyEngine(config: config)
         let directory = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
             .appendingPathComponent("AppEmpire", isDirectory: true)
@@ -61,6 +64,15 @@ final class PortfolioViewModel: ObservableObject {
               let result = try? engine.apply(.upgradeQuality(appID: app.id, id: UUID().uuidString), to: state)
         else { return }
         state = result.state
+        persist()
+    }
+
+    func launchProduct(_ product: ProductSeed) {
+        guard state.apps.count < state.productSlots,
+              state.cashCents >= product.buildCostCents,
+              !state.apps.contains(where: { $0.productID == product.id }) else { return }
+        state.cashCents -= product.buildCostCents
+        state.apps.append(OwnedApp(productID: product.id, lifecycle: .launched, baseHourlyIncomeCents: Int64(max(1, product.baseArpuCents))))
         persist()
     }
 

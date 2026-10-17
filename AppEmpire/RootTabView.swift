@@ -13,8 +13,8 @@ struct RootTabView: View {
                         .tabItem { Label("Home", systemImage: "house.fill") }
                     ProductsView(model: portfolioModel)
                         .tabItem { Label("Products", systemImage: "square.stack.3d.up.fill") }
-            MarketView(model: portfolioModel)
-                        .tabItem { Label("Market", systemImage: "chart.line.uptrend.xyaxis") }
+            StoreView(model: portfolioModel)
+                .tabItem { Label("Store", systemImage: "bag.fill") }
             SeasonView(model: portfolioModel)
                         .tabItem { Label("Season", systemImage: "trophy.fill") }
             ProfileView(model: portfolioModel)

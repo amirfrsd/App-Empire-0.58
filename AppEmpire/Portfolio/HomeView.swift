@@ -18,10 +18,8 @@ struct HomeView: View {
                 .padding(.bottom, 32)
             }
         }
-        .sheet(isPresented: $model.showTutorial) {
+        .fullScreenCover(isPresented: $model.showTutorial) {
             TutorialView(model: model)
-                .presentationDetents([.medium])
-                .presentationDragIndicator(.visible)
         }
     }
 

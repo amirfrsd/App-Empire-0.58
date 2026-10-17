@@ -56,7 +56,7 @@
 
 ### Task 6: Ship the tutorial-to-Tap-to-Earn flow
 
-- [ ] Implement starter app tutorial, Home balances/rates, global Tap to Earn, build/launch state, upgrade action, elapsed income, offline catch-up summary, and persistence wiring.
+- [x] Implement starter app tutorial, Home balances/rates, global Tap to Earn, build/launch state, upgrade action, elapsed income, offline catch-up summary, and persistence wiring.
 - Acceptance: Fresh install completes tutorial offline; the player sees per-app hourly income and aggregate rate; Tap to Earn awards aggregate value; relaunch and capped offline claim preserve state.
 - Verify: Unit tests for action outcomes plus UI smoke test from fresh install through relaunch.
 - Dependencies: Tasks 4 and 5.

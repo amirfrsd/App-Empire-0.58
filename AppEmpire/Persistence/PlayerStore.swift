@@ -16,8 +16,8 @@ struct PlayerStore {
         try fileManager.createDirectory(at: directory, withIntermediateDirectories: true)
     }
 
-    func save(_ state: PlayerState) throws {
-        let envelope = SaveEnvelope(schemaVersion: 1, state: state)
+    func save(_ state: PlayerState, savedAt: Date = Date()) throws {
+        let envelope = SaveEnvelope(schemaVersion: 2, state: state, savedAt: savedAt)
         let data = try JSONEncoder().encode(envelope)
         if fileManager.fileExists(atPath: saveURL.path) {
             try? fileManager.removeItem(at: backupURL)
@@ -32,6 +32,14 @@ struct PlayerStore {
         let envelope = try JSONDecoder().decode(SaveEnvelope.self, from: Data(contentsOf: candidate))
         guard envelope.schemaVersion <= 1 else { throw StoreError.unsupportedSchema(envelope.schemaVersion) }
         return envelope.state
+    }
+
+    func loadSnapshot() throws -> (state: PlayerState, savedAt: Date)? {
+        let candidate = fileManager.fileExists(atPath: saveURL.path) ? saveURL : backupURL
+        guard fileManager.fileExists(atPath: candidate.path) else { return nil }
+        let envelope = try JSONDecoder().decode(SaveEnvelope.self, from: Data(contentsOf: candidate))
+        guard envelope.schemaVersion <= 2 else { throw StoreError.unsupportedSchema(envelope.schemaVersion) }
+        return (envelope.state, envelope.savedAt ?? Date())
     }
 
     func recordAction(id: String) throws -> Bool {
@@ -65,6 +73,7 @@ struct PlayerStore {
 private struct SaveEnvelope: Codable, Sendable {
     let schemaVersion: Int
     let state: PlayerState
+    let savedAt: Date?
 }
 
 enum StoreError: Error, Equatable {

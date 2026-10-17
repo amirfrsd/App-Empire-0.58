@@ -2,6 +2,7 @@ import SwiftUI
 
 struct RootTabView: View {
     @StateObject private var portfolioModel = PortfolioViewModel()
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         TabView {
@@ -20,6 +21,19 @@ struct RootTabView: View {
         .toolbarBackground(.ultraThinMaterial, for: .tabBar)
         .toolbarBackgroundVisibility(.visible, for: .tabBar)
         .toolbarColorScheme(.dark, for: .tabBar)
+        .onChange(of: scenePhase) { _, phase in
+            portfolioModel.handleScenePhase(phase)
+        }
+        .alert("Welcome back", isPresented: Binding(
+            get: { portfolioModel.offlineSummary != nil },
+            set: { if !$0 { portfolioModel.offlineSummary = nil } }
+        )) {
+            Button("Collect") { portfolioModel.offlineSummary = nil }
+        } message: {
+            if let summary = portfolioModel.offlineSummary {
+                Text("Your apps earned \(summary.passiveIncomeCents / 100) dollars while you were away.")
+            }
+        }
     }
 }
 

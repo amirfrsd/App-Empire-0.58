@@ -12,6 +12,16 @@ final class PersistenceTests: XCTestCase {
         XCTAssertEqual(try store.load(), state)
     }
 
+    func testSnapshotPreservesSaveTimestamp() throws {
+        let directory = try temporaryDirectory()
+        let store = try PlayerStore(directory: directory)
+        let savedAt = Date(timeIntervalSince1970: 1_700_000_000)
+
+        try store.save(PlayerState.starter(), savedAt: savedAt)
+
+        XCTAssertEqual(try store.loadSnapshot()?.savedAt, savedAt)
+    }
+
     func testActionJournalIsIdempotent() throws {
         let directory = try temporaryDirectory()
         let store = try PlayerStore(directory: directory)

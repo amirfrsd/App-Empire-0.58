@@ -1,4 +1,5 @@
 import SwiftUI
+import Combine
 
 struct RootTabView: View {
     @StateObject private var portfolioModel = PortfolioViewModel()
@@ -31,6 +32,10 @@ struct RootTabView: View {
         .toolbarColorScheme(.dark, for: .tabBar)
         .onChange(of: scenePhase) { _, phase in
             portfolioModel.handleScenePhase(phase)
+        }
+        .onReceive(Timer.publish(every: 5, on: .main, in: .common).autoconnect()) { _ in
+            guard scenePhase == .active else { return }
+            portfolioModel.simulateForegroundTime()
         }
         .alert("Welcome back", isPresented: Binding(
             get: { portfolioModel.offlineSummary != nil },

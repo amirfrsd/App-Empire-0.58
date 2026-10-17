@@ -84,6 +84,17 @@ final class PortfolioViewModel: ObservableObject {
         }
     }
 
+    func simulateForegroundTime() {
+        let elapsed = max(0, Int(Date().timeIntervalSince(lastSavedAt)))
+        guard elapsed >= 60 else { return }
+        guard let result = try? engine.apply(.advance(seconds: elapsed, offline: false, id: "foreground-\(UUID().uuidString)"), to: state) else {
+            persist()
+            return
+        }
+        state = result.state
+        persist()
+    }
+
     private func applyOfflineCatchup() {
         let elapsed = max(0, Int(Date().timeIntervalSince(lastSavedAt)))
         guard elapsed >= engine.config.offline.minimumClaimSeconds else { return }

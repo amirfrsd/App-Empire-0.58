@@ -1,0 +1,52 @@
+import SwiftUI
+
+struct RootTabView: View {
+    var body: some View {
+        TabView {
+            PlaceholderTab(title: "Home", symbol: "house.fill")
+                .tabItem { Label("Home", systemImage: "house.fill") }
+            PlaceholderTab(title: "Products", symbol: "square.stack.3d.up.fill")
+                .tabItem { Label("Products", systemImage: "square.stack.3d.up.fill") }
+            PlaceholderTab(title: "Market", symbol: "chart.line.uptrend.xyaxis")
+                .tabItem { Label("Market", systemImage: "chart.line.uptrend.xyaxis") }
+            PlaceholderTab(title: "Season", symbol: "trophy.fill")
+                .tabItem { Label("Season", systemImage: "trophy.fill") }
+            PlaceholderTab(title: "Profile", symbol: "person.crop.circle.fill")
+                .tabItem { Label("Profile", systemImage: "person.crop.circle.fill") }
+        }
+        .tint(AppColors.lime)
+    }
+}
+
+private struct PlaceholderTab: View {
+    let title: String
+    let symbol: String
+
+    var body: some View {
+        ZStack {
+            AppColors.background.ignoresSafeArea()
+            VStack(spacing: 16) {
+                Image(systemName: symbol)
+                    .font(.system(size: 42, weight: .semibold))
+                    .foregroundStyle(AppColors.lime)
+                    .accessibilityHidden(true)
+                Text(title)
+                    .font(.largeTitle.bold())
+                    .foregroundStyle(AppColors.mainText)
+                Text("Your empire is getting ready.")
+                    .foregroundStyle(AppColors.mainText.opacity(0.72))
+            }
+        }
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(title)
+    }
+}
+
+enum AppColors {
+    static let background = Color(red: 5 / 255, green: 52 / 255, blue: 39 / 255)
+    static let surface = Color(red: 9 / 255, green: 73 / 255, blue: 52 / 255)
+    static let raisedSurface = Color(red: 14 / 255, green: 91 / 255, blue: 65 / 255)
+    static let lime = Color(red: 181 / 255, green: 246 / 255, blue: 73 / 255)
+    static let ink = Color(red: 0 / 255, green: 29 / 255, blue: 19 / 255)
+    static let mainText = Color(red: 232 / 255, green: 250 / 255, blue: 227 / 255)
+}

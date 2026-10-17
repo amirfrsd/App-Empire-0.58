@@ -4,7 +4,7 @@
 
 ### Task 1: Scaffold the iPhone project
 
-- [ ] Create the Xcode 27 SwiftUI iPhone project, test targets, source folders, `.gitignore`, and scheme.
+- [x] Create the Xcode 27 SwiftUI iPhone project, test targets, source folders, `.gitignore`, and scheme.
 - Acceptance: The app launches into a placeholder portrait shell; unit and UI test targets exist; the project builds on an available iPhone simulator.
 - Verify: `xcodebuild build -scheme AppEmpire -destination 'platform=iOS Simulator,name=iPhone 17'`.
 - Dependencies: None.

@@ -15,6 +15,82 @@ This module is the foundation for `portfolio-experience`, `local-persistence`, `
 5. The engine receives time as an explicit input; it never reads the system clock, network, SwiftUI, or persistence directly.
 6. Ranked score inputs must be separable from purchased currency and paid convenience effects.
 
+## Reference economy contract
+
+The engine must consume the complete reference economy configuration rather than re-implementing a small subset of constants in Swift. `config_version` is stored with every save and any balance change is a versioned migration.
+
+### Currency and rounding
+
+- Cash is `cash_cents` with a signed 64-bit maximum of `9_223_372_036_854_775_807`.
+- Gems are whole units with a configured cap of `2_147_483_647`.
+- AI Tokens are whole units with a configured maximum of 30.
+- Currency operations use `half_up` rounding after each configured currency operation; UI formatting/localization is outside the engine.
+- Overflow, negative results, and cap violations are rejected or safely clamped according to an explicit typed policy, never silently wrapped.
+
+### Starting state and AI Tokens
+
+- New players start with 90,000 cash cents, 12 AI Tokens, 0 Gems, founder level 1, and 1 product slot.
+- AI Tokens regenerate one unit per 1,800 seconds up to the configured maximum.
+- The daily free grant is 3; paid refill is disabled by the reference configuration.
+- Product creation token costs are 3 for the first product, 4 for the second, 6 for the third, and a base cost of 7 for later products.
+- Regeneration is elapsed-time based and deterministic; it must not require a wall-clock read inside the engine.
+
+### Product simulation
+
+Each launched app is simulated in discrete ticks of 60 seconds, with foreground and offline catch-up using the same transition function. The baseline reference equations are:
+
+```text
+demand = base_demand
+       × category_multiplier
+       × quality_multiplier
+       × marketing_multiplier
+       × season_modifier
+
+new_customers = demand × acquisition_efficiency × elapsed_days
+churned_customers = customers × churn_rate × elapsed_days
+gross_revenue = active_customers × ARPU × elapsed_days
+operating_cost = fixed_cost + customer_cost + campaign_spend
+net_cash = gross_revenue − operating_cost
+```
+
+- Customers are capped at 1,000,000,000 per product.
+- Reference simulation defaults are base ARPU 35 cents, base daily churn 0.035, quality multiplier range 0.5–2.0, marketing multiplier maximum 3.0, and season paid-boost multiplier 1.0.
+- Product seed values override the base demand, ARPU, churn, build cost, AI-token cost, build time, category, tier, and complexity where present.
+- Demand, acquisition, churn, revenue, and operating-cost steps are rounded using the configured policy and are never allowed to create negative customers or balances.
+- All random outcomes use a documented seed and stable PRNG. System randomness is forbidden in replayable simulation.
+
+### Offline catch-up
+
+- Maximum catch-up is 8 hours.
+- Claims below 60 seconds are not eligible.
+- Claim cooldown is configured as 0 seconds in the reference economy.
+- The result must state elapsed time considered, capped time, gross income, operating costs, net cash, token regeneration, and any expired effects.
+- Claiming is atomic and idempotent; a crash cannot award the same offline interval twice.
+
+### Progression and upgrades
+
+- Launching awards 100 founder XP.
+- Each 1,000 customers awards 10 founder XP.
+- Level XP starts at 250 and grows by 1.18 per level.
+- Product slots unlock at founder levels 1, 3, 6, 10, 15, and 21.
+- Quality upgrades start at 12,000 cents, grow by 1.55, add 0.08 quality per level, and cap at level 10.
+- Retention upgrades start at 16,000 cents, grow by 1.6, reduce churn by 0.015 per level, and cap at level 8.
+- Marketing upgrades start at 9,000 cents, grow by 1.5, add 0.12 demand per level, and cap at level 10.
+- Upgrade cost and effect calculations are data-driven and must be tested at level zero, maximum level, and the first level above maximum.
+
+### Gems, store effects, and competitive separation
+
+- Earnable Gems are 2 per daily challenge, 15 per weekly milestone, and up to 120 from the free season track.
+- Store catalog data includes the five reference Gem packs, starter bundle, income convenience offer, season pass, VIP monthly offer, and Gem piggy bank.
+- Store prices/contents are catalog data and are not granted by this local engine without a verified grant event.
+- Paid currency and paid convenience effects must not affect ranked score. The reference ranked-score paid-boost multiplier is 1.0.
+
+### Seasons and score inputs
+
+- Seasons last 14 days; submissions are scheduled every 900 seconds; leaderboard pages contain 50 entries; reward claims remain available for 30 days after close.
+- Ranked score weights are verified net cash growth 0.45, retention 0.30, and product quality 0.25.
+- The engine exposes verified score inputs separately from casual portfolio value and excludes purchased Gems, paid Cash, VIP multipliers, and paid convenience boosts.
+
 ## Functional requirements
 
 ### State
@@ -25,6 +101,8 @@ The engine state must represent:
 - Owned apps with product ID, lifecycle state, level, quality, marketing, retention, customers, and last simulation timestamp.
 - Config version and a deterministic simulation/replay seed.
 - Accumulated passive income eligible for display/claim and the last active-tap result context.
+- Product build timestamps, fixed/customer/campaign cost inputs, category/tier/complexity, XP, achievements, season modifier, and paid-effect exclusions.
+- A journal/replay sequence or equivalent action identity needed to prevent duplicate offline claims and grants.
 
 ### Income
 
@@ -32,6 +110,7 @@ The engine state must represent:
 - Aggregate portfolio rate is the sum of all eligible active app rates.
 - An app that is paused or retired contributes no income.
 - Passive elapsed income is proportional to elapsed seconds, bounded by the configured catch-up cap when the action is offline.
+- Foreground simulation advances in configured ticks and caps elapsed work to prevent pathological catch-up loops.
 - Zero or negative elapsed time produces zero income and does not mutate balances.
 
 ### Tap to Earn
@@ -140,7 +219,9 @@ func portfolioHourlyRate(in state: PlayerState) -> Int64 {
 5. Rejected actions leave state unchanged and return typed errors.
 6. Replaying identical inputs produces identical state and summaries.
 7. No valid operation produces a negative balance or duplicate idempotent grant.
-8. All focused and full Xcode tests pass without UI, network, or database access.
+8. Reference starting state, token regeneration, creation costs, upgrade curves, progression unlocks, customer cap, and season score weights are exercised by tests.
+9. Store/paid effects are represented as non-ranked inputs and cannot alter ranked score inputs.
+10. All focused and full Xcode tests pass without UI, network, or database access.
 
 ## Open questions
 

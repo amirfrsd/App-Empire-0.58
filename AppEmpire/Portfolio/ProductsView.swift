@@ -10,6 +10,7 @@ struct ProductsView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     Text("Products").font(.largeTitle.bold()).foregroundStyle(AppColors.mainText)
+                    ResourceBalanceStrip(model: model)
                     Button { showingProductCreator = true } label: { Label("Create new product", systemImage: "plus") }
                         .buttonStyle(PrimaryActionButtonStyle())
                     Text("Active apps").font(.headline).foregroundStyle(AppColors.mainText)

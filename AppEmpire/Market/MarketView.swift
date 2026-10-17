@@ -13,6 +13,7 @@ struct MarketView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     Text("Market").font(.largeTitle.bold()).foregroundStyle(AppColors.mainText)
+                    ResourceBalanceStrip(model: model)
                     Text("Find your next opportunity").font(.title3).foregroundStyle(AppColors.lime)
                     GlassSurface {
                         VStack(alignment: .leading, spacing: 8) {

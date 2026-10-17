@@ -9,6 +9,7 @@ struct ProfileView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     Text("Profile").font(.largeTitle.bold()).foregroundStyle(AppColors.mainText)
+                    ResourceBalanceStrip(model: model)
                     GlassSurface {
                         VStack(alignment: .leading, spacing: 12) {
                             Text("Founder").font(.title2.bold()).foregroundStyle(AppColors.mainText)

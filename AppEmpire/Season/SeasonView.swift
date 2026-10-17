@@ -11,6 +11,7 @@ struct SeasonView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     Text("Season").font(.largeTitle.bold()).foregroundStyle(AppColors.mainText)
+                    ResourceBalanceStrip(model: model)
                     Text("Founder season · Offline standings").foregroundStyle(AppColors.lime)
                     GlassSurface {
                         VStack(alignment: .leading, spacing: 12) {

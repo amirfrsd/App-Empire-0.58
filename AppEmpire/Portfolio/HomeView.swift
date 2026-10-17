@@ -9,6 +9,7 @@ struct HomeView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     header
+                    ResourceBalanceStrip(model: model)
                     cashCard
                     rateCard
                     tapCard

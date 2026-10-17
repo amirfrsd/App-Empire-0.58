@@ -23,6 +23,7 @@
 		91CF1F8D709658CFEAE7889F /* TutorialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D3D79F0A6133239B48BAA2 /* TutorialView.swift */; };
 		A272D0A9F3DAA0E331155907 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C9B615EE6FFE11C5D79BBE23 /* Foundation.framework */; };
 		A63DB1FBEC48BE1A46E5A907 /* Engine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D64576F8E478FF959C4131 /* Engine.swift */; };
+		A9E2D1C4B8F743A8A9A4C001 /* ResourceIntegrity.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9E2D1C4B8F743A8A9A4C002 /* ResourceIntegrity.swift */; };
 		AECC3FAA8BEA9DEC9957B0E6 /* ProductsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C52D2E7A15F5134655E438 /* ProductsView.swift */; };
 		CBCC14B44AB6C8090FC97688 /* GlassSurface.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41F7EAD897B9DCC57AE9F8C /* GlassSurface.swift */; };
 		F8BE6E53C4F7F4A097820B12 /* products.json in Resources */ = {isa = PBXBuildFile; fileRef = 53BB14DE8B76A85423A004D2 /* products.json */; };
@@ -50,17 +51,18 @@
 /* Begin PBXFileReference section */
 		004FF5B5EE833E15D088848C /* PlayerStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PlayerStore.swift; sourceTree = "<group>"; };
 		0B5CB8E971ECCF97FF4B6258 /* AppEmpireUITests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppEmpireUITests.swift; sourceTree = "<group>"; };
-		1D6F07F4337765D7C4803B10 /* economy.json */ = {isa = PBXFileReference; includeInIndex = 1; path = economy.json; sourceTree = "<group>"; };
+		1D6F07F4337765D7C4803B10 /* economy.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = economy.json; sourceTree = "<group>"; };
 		24D7E502125BF1E6E0903AF2 /* AppEmpireTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppEmpireTests.swift; sourceTree = "<group>"; };
 		280295A1DEDAD57E57EC7E62 /* EconomyEngineTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = EconomyEngineTests.swift; sourceTree = "<group>"; };
 		4F73D3FCFF7E490D964E4CD9 /* AppEmpireApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppEmpireApp.swift; sourceTree = "<group>"; };
-		53BB14DE8B76A85423A004D2 /* products.json */ = {isa = PBXFileReference; includeInIndex = 1; path = products.json; sourceTree = "<group>"; };
+		53BB14DE8B76A85423A004D2 /* products.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = products.json; sourceTree = "<group>"; };
 		53D64576F8E478FF959C4131 /* Engine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Engine.swift; sourceTree = "<group>"; };
 		670B058C4BA8878B3B605D8B /* PersistenceTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PersistenceTests.swift; sourceTree = "<group>"; };
 		862129E6B0BFEA81A68B3947 /* AppEmpireUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppEmpireUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B7B9DDC74F22956117D6A1C /* ConfigurationTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ConfigurationTests.swift; sourceTree = "<group>"; };
 		B4D3D79F0A6133239B48BAA2 /* TutorialView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TutorialView.swift; sourceTree = "<group>"; };
 		B6B468F9A186638C8318CA1C /* Configuration.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		A9E2D1C4B8F743A8A9A4C002 /* ResourceIntegrity.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ResourceIntegrity.swift; sourceTree = "<group>"; };
 		BF2BDB464A6CD488E9ABC090 /* AppEmpire.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppEmpire.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C055B8BAB8CBE02B94A5D0DA /* RootTabView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RootTabView.swift; sourceTree = "<group>"; };
 		C4C958DF2A6836F7A25EAA91 /* PortfolioViewModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PortfolioViewModel.swift; sourceTree = "<group>"; };
@@ -105,7 +107,6 @@
 			children = (
 				0B5CB8E971ECCF97FF4B6258 /* AppEmpireUITests.swift */,
 			);
-			name = AppEmpireUITests;
 			path = AppEmpireUITests;
 			sourceTree = "<group>";
 		};
@@ -114,7 +115,6 @@
 			children = (
 				004FF5B5EE833E15D088848C /* PlayerStore.swift */,
 			);
-			name = Persistence;
 			path = Persistence;
 			sourceTree = "<group>";
 		};
@@ -122,10 +122,10 @@
 			isa = PBXGroup;
 			children = (
 				B6B468F9A186638C8318CA1C /* Configuration.swift */,
+				A9E2D1C4B8F743A8A9A4C002 /* ResourceIntegrity.swift */,
 				C99DA872BB8F35D48587CB2F /* Models.swift */,
 				53D64576F8E478FF959C4131 /* Engine.swift */,
 			);
-			name = Economy;
 			path = Economy;
 			sourceTree = "<group>";
 		};
@@ -135,7 +135,6 @@
 				1D6F07F4337765D7C4803B10 /* economy.json */,
 				53BB14DE8B76A85423A004D2 /* products.json */,
 			);
-			name = Resources;
 			path = Resources;
 			sourceTree = "<group>";
 		};
@@ -158,7 +157,6 @@
 				C9B49158D67AC9124FF66B3B /* DesignSystem */,
 				7B50151E4CC80EAC5A573078 /* Portfolio */,
 			);
-			name = AppEmpire;
 			path = AppEmpire;
 			sourceTree = "<group>";
 		};
@@ -188,7 +186,6 @@
 				F5C52D2E7A15F5134655E438 /* ProductsView.swift */,
 				B4D3D79F0A6133239B48BAA2 /* TutorialView.swift */,
 			);
-			name = Portfolio;
 			path = Portfolio;
 			sourceTree = "<group>";
 		};
@@ -200,7 +197,6 @@
 				280295A1DEDAD57E57EC7E62 /* EconomyEngineTests.swift */,
 				670B058C4BA8878B3B605D8B /* PersistenceTests.swift */,
 			);
-			name = AppEmpireTests;
 			path = AppEmpireTests;
 			sourceTree = "<group>";
 		};
@@ -209,7 +205,6 @@
 			children = (
 				E41F7EAD897B9DCC57AE9F8C /* GlassSurface.swift */,
 			);
-			name = DesignSystem;
 			path = DesignSystem;
 			sourceTree = "<group>";
 		};
@@ -288,6 +283,17 @@
 			attributes = {
 				LastSwiftUpdateCheck = 1500;
 				LastUpgradeCheck = 2700;
+				TargetAttributes = {
+					3ADCD92CBAC2461C9EDB0589 = {
+						DevelopmentTeam = 98G2HTX7TA;
+					};
+					67D8B8B4D3229880E13C29E3 = {
+						DevelopmentTeam = 98G2HTX7TA;
+					};
+					85C71AA30671AB7D4FCCEE38 = {
+						DevelopmentTeam = 98G2HTX7TA;
+					};
+				};
 			};
 			buildConfigurationList = 717275777161FE109A9D8E3B /* Build configuration list for PBXProject "AppEmpire" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -356,6 +362,7 @@
 				55CA906D3E3706D30AA85A96 /* Configuration.swift in Sources */,
 				4C5C26C632E040D156FABC9E /* Models.swift in Sources */,
 				A63DB1FBEC48BE1A46E5A907 /* Engine.swift in Sources */,
+				A9E2D1C4B8F743A8A9A4C001 /* ResourceIntegrity.swift in Sources */,
 				847384D0860958A0C9491A1A /* PlayerStore.swift in Sources */,
 				CBCC14B44AB6C8090FC97688 /* GlassSurface.swift in Sources */,
 				0694C87660FF644D3E564796 /* PortfolioViewModel.swift in Sources */,
@@ -396,9 +403,10 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGNING_ALLOWED = NO;
+				DEVELOPMENT_TEAM = 98G2HTX7TA;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.amirfrsd.AppEmpireUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.blueripple.AppEmpireUITests;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 6.0;
 				TEST_TARGET_NAME = AppEmpire;
@@ -411,9 +419,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGNING_ALLOWED = NO;
+				DEVELOPMENT_TEAM = 98G2HTX7TA;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.amirfrsd.AppEmpireTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.blueripple.AppEmpireTests;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 6.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppEmpire.app/AppEmpire";
@@ -427,11 +436,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGNING_ALLOWED = NO;
+				DEVELOPMENT_TEAM = 98G2HTX7TA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "App Empire";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.amirfrsd.AppEmpire;
+				PRODUCT_BUNDLE_IDENTIFIER = com.blueripple.AppEmpire;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -444,9 +454,10 @@
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGNING_ALLOWED = NO;
+				DEVELOPMENT_TEAM = 98G2HTX7TA;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.amirfrsd.AppEmpireUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.blueripple.AppEmpireUITests;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 6.0;
 				TEST_TARGET_NAME = AppEmpire;
@@ -502,8 +513,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -515,11 +525,12 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGNING_ALLOWED = NO;
+				DEVELOPMENT_TEAM = 98G2HTX7TA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = "App Empire";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.amirfrsd.AppEmpire;
+				PRODUCT_BUNDLE_IDENTIFIER = com.blueripple.AppEmpire;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -532,9 +543,10 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGNING_ALLOWED = NO;
+				DEVELOPMENT_TEAM = 98G2HTX7TA;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.amirfrsd.AppEmpireTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.blueripple.AppEmpireTests;
 				SDKROOT = iphoneos;
 				SWIFT_VERSION = 6.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppEmpire.app/AppEmpire";

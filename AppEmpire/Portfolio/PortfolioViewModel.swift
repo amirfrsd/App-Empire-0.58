@@ -13,6 +13,7 @@ final class PortfolioViewModel: ObservableObject {
     private var lastSavedAt: Date
 
     init() {
+        try! ResourceIntegrity.verifyBundledResources()
         let economyURL = Bundle.main.url(forResource: "economy", withExtension: "json")!
         let config = try! ConfigurationLoader.loadEconomy(from: economyURL)
         self.engine = EconomyEngine(config: config)

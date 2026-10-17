@@ -21,6 +21,26 @@ final class ConfigurationTests: XCTestCase {
         XCTAssertEqual(economy.offline.maxCatchupHours, 8)
     }
 
+    func testBundledEconomyAndProductResourcesMatchPinnedHashes() throws {
+        for (name, hash) in ResourceIntegrity.expectedHashes {
+            let url = resourceURL(named: name.replacingOccurrences(of: ".json", with: ""))
+            try ResourceIntegrity.verify(resourceAt: url, expectedHash: hash)
+        }
+    }
+
+    func testModifiedResourceIsRejected() throws {
+        let url = FileManager.default.temporaryDirectory.appendingPathComponent("economy.json")
+        try Data("tampered".utf8).write(to: url)
+        defer { try? FileManager.default.removeItem(at: url) }
+
+        XCTAssertThrowsError(try ResourceIntegrity.verify(resourceAt: url, expectedHash: ResourceIntegrity.expectedHashes["economy.json"]!)) { error in
+            guard case let ResourceIntegrityError.hashMismatch(resource, _, _) = error else {
+                return XCTFail("Expected a hash mismatch")
+            }
+            XCTAssertEqual(resource, "economy.json")
+        }
+    }
+
     private func resourceURL(named name: String) -> URL {
         URL(fileURLWithPath: #filePath)
             .deletingLastPathComponent()

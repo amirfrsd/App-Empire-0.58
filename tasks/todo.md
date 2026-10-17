@@ -47,7 +47,7 @@
 
 ### Task 5: Build the visual system and portrait tab shell
 
-- [ ] Implement palette tokens, typography, materials/fallback surfaces, accessible controls, and Home/Products/Market/Season/Profile navigation.
+- [x] Implement palette tokens, typography, materials/fallback surfaces, accessible controls, and Home/Products/Market/Season/Profile navigation.
 - Acceptance: Portrait layout matches approved colors; tab bar is glassmorphic with a reduced-transparency fallback; all five destinations exist; labels and contrast are testable.
 - Verify: Build plus UI snapshot/manual simulator check with Dynamic Type and reduced motion/transparency.
 - Dependencies: Task 1.

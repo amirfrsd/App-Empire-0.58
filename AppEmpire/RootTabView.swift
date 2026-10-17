@@ -15,6 +15,9 @@ struct RootTabView: View {
                 .tabItem { Label("Profile", systemImage: "person.crop.circle.fill") }
         }
         .tint(AppColors.lime)
+        .toolbarBackground(.ultraThinMaterial, for: .tabBar)
+        .toolbarBackgroundVisibility(.visible, for: .tabBar)
+        .toolbarColorScheme(.dark, for: .tabBar)
     }
 }
 
@@ -25,16 +28,29 @@ private struct PlaceholderTab: View {
     var body: some View {
         ZStack {
             AppColors.background.ignoresSafeArea()
-            VStack(spacing: 16) {
-                Image(systemName: symbol)
-                    .font(.system(size: 42, weight: .semibold))
-                    .foregroundStyle(AppColors.lime)
-                    .accessibilityHidden(true)
-                Text(title)
-                    .font(.largeTitle.bold())
-                    .foregroundStyle(AppColors.mainText)
-                Text("Your empire is getting ready.")
-                    .foregroundStyle(AppColors.mainText.opacity(0.72))
+            ScrollView {
+                VStack(spacing: 24) {
+                    Image(systemName: symbol)
+                        .font(.system(size: 42, weight: .semibold))
+                        .foregroundStyle(AppColors.lime)
+                        .accessibilityHidden(true)
+                    Text(title)
+                        .font(.largeTitle.bold())
+                        .foregroundStyle(AppColors.mainText)
+                    GlassSurface {
+                        VStack(alignment: .leading, spacing: 12) {
+                            Text("Your empire is getting ready.")
+                                .font(.headline)
+                                .foregroundStyle(AppColors.mainText)
+                            Text("Build, launch, and grow your first app.")
+                                .foregroundStyle(AppColors.mainText.opacity(0.72))
+                        }
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    .padding(.horizontal)
+                }
+                .frame(maxWidth: .infinity)
+                .padding(.top, 36)
             }
         }
         .accessibilityElement(children: .combine)
